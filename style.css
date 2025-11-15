@@ -1,0 +1,157 @@
+/* style.css - простой приятный стиль для SuperChat */
+:root{
+  --bg:#0f1724;
+  --panel:#0b1220;
+  --accent:#06b6d4;
+  --muted:#94a3b8;
+  --msg-bg:#0b1220;
+  --card:#0b1220;
+  --danger:#ef4444;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, Roboto, Arial, sans-serif;
+  background:linear-gradient(180deg,var(--bg), #071028 120%);
+  color:#e6eef8;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+/* Auth panel */
+#auth{
+  width:420px;
+  background:rgba(255,255,255,0.03);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 6px 30px rgba(2,6,23,0.6);
+}
+#auth h2{margin:0 0 12px 0;font-size:20px}
+#auth input[type="text"], #auth input[type="password"], #auth input[type="file"]{
+  width:100%;
+  padding:10px 12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.02);
+  color:inherit;
+}
+#auth button{
+  padding:10px 14px;
+  margin-right:8px;
+  border-radius:8px;
+  border:0;
+  background:var(--accent);
+  color:#021022;
+  cursor:pointer;
+  font-weight:600;
+}
+#auth p#authMsg{margin-top:10px;color:var(--muted);min-height:20px}
+
+/* Chat layout */
+.hidden{display:none}
+#chat{
+  width:920px;
+  height:640px;
+  display:flex;
+  gap:16px;
+}
+
+/* Left users panel */
+aside#usersPanel{
+  width:220px;
+  background:var(--card);
+  border-radius:12px;
+  padding:12px;
+  overflow:auto;
+}
+#usersPanel h3{margin:0 0 8px 0;font-size:14px;color:var(--muted)}
+.user-item{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:8px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .12s;
+}
+.user-item:hover{background:rgba(255,255,255,0.02)}
+.user-item img.avatar{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.user-item .u-name{font-weight:600}
+
+/* Main chat area */
+main{
+  flex:1;
+  background:rgba(255,255,255,0.02);
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  padding:12px;
+  overflow:hidden;
+}
+#messages{
+  list-style:none;
+  padding:12px;
+  margin:0;
+  overflow:auto;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.message{
+  max-width:70%;
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.03);
+  align-self:flex-start;
+  position:relative;
+}
+.message.own{align-self:flex-end;background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(6,182,212,0.06))}
+.message .meta{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.message .meta img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.message .meta .name{font-weight:700;font-size:13px}
+.message .meta .time{font-size:11px;color:var(--muted)}
+.message img.msg-img{max-width:320px;border-radius:8px;display:block;margin-top:6px}
+.msg-actions{position:absolute;right:6px;top:6px;display:flex;gap:6px}
+.msg-actions button{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:14px}
+
+/* send panel */
+#sendPanel{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:8px 6px;
+}
+#sendPanel input[type="text"], #sendPanel input#msgInput{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:transparent;
+  color:inherit;
+}
+#sendPanel button{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);cursor:pointer}
+#sendPanel input[type="file"]{display:inline-block}
+
+/* small controls for call */
+.controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.controls button{padding:8px 10px;border-radius:8px;border:0;background:#0b1220;color:var(--muted);cursor:pointer}
+.controls button.call-active{background:var(--danger);color:white}
+
+/* responsive */
+@media (max-width:980px){
+  body{padding:10px}
+  #chat{width:100%;height:90vh;flex-direction:column}
+  aside#usersPanel{width:100%;display:flex;overflow:auto}
+  .message{max-width:85%}
+}
